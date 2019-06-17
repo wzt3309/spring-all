@@ -16,8 +16,8 @@ YAML maps off to false, so be sure to add quotes if you want to disable the bann
 in your application, as shown in the following example:
 ```yaml
 spring:
-	main:
-		banner-mode: "off"
+  main:
+    banner-mode: "off"
 ```
 
 The `SpringApplication.setBanner(…​)` method can be used if you want to 
