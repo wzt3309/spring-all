@@ -1,0 +1,22 @@
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>CSRF test on Origin</title>
+</head>
+<body>
+<h1>CSRF test on Origin</h1>
+<!-- when enable csrf, you can transfer money in localhost:8080 after you are authenticated -->
+<!-- but you can't transfer money in localhost:8081 -->
+<a th:href="@{transfer?accountNo=123&amount=100}">Win $100</a>
+<form th:action="@{transfer}" method="post">
+    <lable>Account Number</lable>
+    <label>
+        <input name="accountNo" type="text">
+    </label>
+    <lable>amount</lable>
+    <label>
+        <input name="amount" type="text">
+    </label>
+    <input type="submit">
+</form>
+</body>
+</html>

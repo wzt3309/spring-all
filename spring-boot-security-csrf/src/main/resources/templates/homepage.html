@@ -1,0 +1,19 @@
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<h1>Home page</h1>
+
+<!-- only be visible to authenticated user-->
+<div sec:authorize="isAuthenticated()">
+    <p>
+        Logged user: <span sec:authentication="name">Bob</span>
+        Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+    </p>
+    <!-- logout should be a post request @see spring-security LogoutConfigure.logoutUrl() -->
+    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+</body>
+</html>
