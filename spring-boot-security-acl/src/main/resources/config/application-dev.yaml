@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    # if you want to use persistent h2 database, you should use file
+    # but not in-memory, the url looks like below
+    ## Note. if you specific 'IFEXISTS=TRUE;' it means opening a database only if it already exist
+    ##       and will not create the database file.
+    # url: jdbc:h2:/tmp/testdb;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;#IFEXISTS=TRUE;
+
+    # if you use in-memory h2 database, you can't access it after vm closed
+    # and can't using IDEA's database tools to connect even with the same url
+    # because every time you connect to in-memory by H2 Driver then will create
+    # a new in-memory space as database, it's clean to image, if you can access
+    # the vm process's memory where spring-boot-app running by IDEA tools, it actually means
+    # the process's memory is unsafe and leaked
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;
+    username: sa
+    # you don't need specific the password when you using h2 database
+    # password
+    driver-class-name: org.h2.Driver
+    # https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
+    # instead of spring.datasource.initialize
+    initialization-mode: always
+    # default search the root of classpath for schema.sql and data.sql
+    # now specific the locations
+    ## schema.sql to create tables etc.
+    ## data.sql to insert data etc.
+    schema: classpath:/sql/acl-schema.sql
+    data: classpath:/sql/acl-data.sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    # Map<String, String>
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+  # using h2 console to connect to h2 database by web console
+  # default the spring.h2.console.enabled=false for safe
+  h2:
+    console:
+      path: /myconsole
+      enabled: true

@@ -1,0 +1,11 @@
+spring:
+  thymeleaf:
+    cache: false
+
+demo:
+  auth:
+    in-memory-users:
+      - admin:admin:ADMIN
+      - user1:user1:USER
+      - user3:user3
+      - "user4:user4:"
