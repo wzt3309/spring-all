@@ -1,0 +1,12 @@
+app:
+  system:
+    # If not specific `@DurationUnit` the default unit is millis,
+    # but we can use 30s PT30S instead of 30
+    session-timeout: 30
+    read-timeout: 1000
+    local-date: 12-06-2018
+  io:
+    # If not specific `@DurationUnit` the default unit is bytes,
+    # but we can use 100MB instead of 100
+    buffer-size: 100
+    size-threshold: 1024
